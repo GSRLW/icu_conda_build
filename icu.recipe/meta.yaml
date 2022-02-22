@@ -1,0 +1,51 @@
+package:
+    name: icu
+    version: '50.2'
+source:
+    fn: icu4c-50_2-src.tgz
+    sha256: 87306f088a4c7c00b0adac6b84e8862fef81c18f8ec70a60cb03258062908440
+    url: ../../source/icu4c-50_2-src.tgz
+build:
+    number: '11'
+    string: h09acfef_1_oe
+requirements:
+    build:
+        - system-gcc44 1.0.0
+        - gcc 4.8.5
+test:
+    commands:
+        - test -f $PREFIX/lib/libicudata.a
+        - test -f $PREFIX/lib/libicudata.so.50.2
+        - test -f $PREFIX/lib/libicui18n.a
+        - test -f $PREFIX/lib/libicui18n.so.50.2
+        - test -f $PREFIX/lib/libicuio.a
+        - test -f $PREFIX/lib/libicuio.so.50.2
+        - test -f $PREFIX/lib/libicutest.a
+        - test -f $PREFIX/lib/libicutest.so.50.2
+        - test -f $PREFIX/lib/libicutu.a
+        - test -f $PREFIX/lib/libicutu.so.50.2
+        - test -f $PREFIX/lib/libicuuc.a
+        - test -f $PREFIX/lib/libicuuc.so.50.2
+        - genbrk --help
+        - gencfu --help
+        - gencnval --help
+        - gendict --help
+        - icuinfo --help
+        - icu-config --help
+        - makeconv gb-18030-2000.ucm
+        - conda inspect linkages -p $PREFIX icu
+    files:
+        - gb-18030-2000.ucm
+        - de.txt
+about:
+    home: http://site.icu-project.org/
+    license: MIT
+    summary: International Components for Unicode.
+extra:
+    copy_test_source_files: true
+    final: true
+    recipe-maintainers:
+        - ccordoba12
+        - jakirkham
+        - msarahan
+        - ocefpaf
